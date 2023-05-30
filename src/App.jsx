@@ -108,9 +108,9 @@ const App = () => {
                 type="range"
                 min="0"
                 max="500"
-                value={x}
+                value={y}
                 onChange={(e) => {
-                  setX(Number(e.target.value));
+                  setY(Number(e.target.value));
                   modifyPdf();
                 }}
               />
@@ -133,9 +133,9 @@ const App = () => {
                   type="range"
                   min="0"
                   max="500"
-                  value={y}
+                  value={x}
                   onChange={(e) => {
-                    setY(Number(e.target.value));
+                    setX(Number(e.target.value));
                     modifyPdf();
                   }}
                 />

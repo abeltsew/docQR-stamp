@@ -22,7 +22,7 @@
 }
 
 .vertical-slider {
-  transform: rotate(90deg);
+  transform: rotate(270deg);
   position: absolute;
   top: 50%;
   left: -20%;

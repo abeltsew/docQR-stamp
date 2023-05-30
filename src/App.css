@@ -1,5 +1,4 @@
 #root {
-  max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
@@ -39,4 +38,20 @@
 
 .read-the-docs {
   color: #888;
+}
+
+.vertical-slider {
+  transform: rotate(90deg);
+}
+
+.preview {
+  flex: 1;
+}
+
+.slider {
+  display: flex;
+}
+
+.horizontal-slider {
+  width: 100%;
 }

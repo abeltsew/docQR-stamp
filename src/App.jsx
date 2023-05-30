@@ -9,29 +9,12 @@ const App = () => {
   const [topic, setTopic] = useState('');
   const [selectedFile, setSelectedFile] = useState(null);
 
-  async function createPdf() {
-    const pdfDoc = await PDFDocument.create();
-    const timesRomanFont = await pdfDoc.embedFont(StandardFonts.TimesRoman);
-
-    const page = pdfDoc.addPage();
-    const { width, height } = page.getSize();
-    const fontSize = 30;
-    page.drawText(name, {
-      x: 50,
-      y: height - 4 * fontSize,
-      size: fontSize,
-      font: timesRomanFont,
-      color: rgb(0, 0.53, 0.71),
-    });
-
-    const pdfBytes = await pdfDoc.save();
-    fileDownload(pdfBytes, 'pdf-lib_creation_example.pdf');
-  }
+  const [stamped, setStamped] = useState('');
 
   const cleanUp = () => {
     setName('');
     setTopic('');
-    setSelectedFile(null);
+    setStamped('');
   };
 
   async function modifyPdf() {
@@ -62,14 +45,18 @@ const App = () => {
     });
 
     const pdfBytes = await pdfDoc.save();
-    fileDownload(pdfBytes, `Certificate for ${name}.pdf`);
-    cleanUp();
+
+    setStamped(pdfBytes);
   }
 
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
   };
 
+  const downloadFile = () => {
+    fileDownload(stamped, `Certificate for ${name}.pdf`);
+    cleanUp();
+  };
   return (
     <>
       <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem' }}>
@@ -84,7 +71,23 @@ const App = () => {
           onChange={(e) => setTopic(e.target.value)}
         />
         <input type="file" accept=".pdf" onChange={handleFileChange} />
-        <button onClick={() => modifyPdf()}>Modify PDF</button>
+        {stamped && (
+          <object
+            data={URL.createObjectURL(
+              new Blob([stamped], { type: 'application/pdf' })
+            )}
+            type="application/pdf"
+            width="100%"
+            height="100%"
+          >
+            <p>PDF preview is not available</p>
+          </object>
+        )}
+        {!stamped ? (
+          <button onClick={() => modifyPdf()}>Preview PDF</button>
+        ) : (
+          <button onClick={() => downloadFile()}>Download PDF</button>
+        )}
       </div>
     </>
   );

@@ -28,6 +28,12 @@ const App = () => {
     fileDownload(pdfBytes, 'pdf-lib_creation_example.pdf');
   }
 
+  const cleanUp = () => {
+    setName('');
+    setTopic('');
+    setSelectedFile(null);
+  };
+
   async function modifyPdf() {
     if (!selectedFile) {
       console.log('No file selected');
@@ -57,6 +63,7 @@ const App = () => {
 
     const pdfBytes = await pdfDoc.save();
     fileDownload(pdfBytes, `Certificate for ${name}.pdf`);
+    cleanUp();
   }
 
   const handleFileChange = (event) => {

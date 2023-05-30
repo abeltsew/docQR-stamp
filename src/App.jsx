@@ -70,6 +70,7 @@ const App = () => {
   return (
     <main className="main-container">
       <div className="input-fields">
+        <img className="logo" src="logo.png" alt="logo" />
         <h2>Fill in information to include in the QR code</h2>
         <label htmlFor="name">Name</label>
         <input

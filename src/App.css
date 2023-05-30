@@ -58,3 +58,8 @@
   display: flex;
   margin: auto;
 }
+
+.logo {
+  width: 10rem;
+  height: 10rem;
+}

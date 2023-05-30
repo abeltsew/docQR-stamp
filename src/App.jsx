@@ -34,10 +34,15 @@ const App = () => {
 
     const jpgUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&format=jpg&data=${name} ${topic} date: ${new Date()}`;
 
-    if (!jpgBytes)
-      setJpgBytes(await fetch(jpgUrl).then((res) => res.arrayBuffer()));
+    let jpgImage;
 
-    const jpgImage = await pdfDoc.embedJpg(jpgBytes);
+    if (!jpgBytes) {
+      const jB = await fetch(jpgUrl).then((res) => res.arrayBuffer());
+      setJpgBytes(jB);
+      jpgImage = await pdfDoc.embedJpg(jB);
+    } else {
+      jpgImage = await pdfDoc.embedJpg(jpgBytes);
+    }
 
     const jpgDims = jpgImage.scale(0.75);
 

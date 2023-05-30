@@ -86,7 +86,7 @@ const App = () => {
           value={topic}
           onChange={(e) => setTopic(e.target.value)}
         />
-        <label htmlFor="upload">Upload Original</label>
+        <label htmlFor="upload">Load Original</label>
         <input
           id="upload"
           type="file"

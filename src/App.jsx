@@ -63,20 +63,37 @@ const App = () => {
   };
 
   return (
-    <>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem' }}>
+    <main className="main-container">
+      <div className="input-fields">
+        <h2>Fill in information to include in the QR code</h2>
+        <label htmlFor="name">Name</label>
         <input
+          id="name"
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
+        <label htmlFor="content">Content</label>
         <input
+          id="content"
           type="text"
           value={topic}
           onChange={(e) => setTopic(e.target.value)}
         />
-        <input type="file" accept=".pdf" onChange={handleFileChange} />
-
+        <label htmlFor="upload">Upload Original</label>
+        <input
+          id="upload"
+          type="file"
+          accept=".pdf"
+          onChange={handleFileChange}
+        />
+        <p className="notice">
+          Please be assured that your document remains strictly on your device,
+          ensuring utmost privacy and confidentiality.
+        </p>
+        {!stamped && <button onClick={() => modifyPdf()}>Preview PDF</button>}
+      </div>
+      <div>
         {stamped && (
           <>
             <div className="slider">
@@ -92,6 +109,8 @@ const App = () => {
                 }}
               />
               <div>
+                {' '}
+                <h2>Move the sliders to adjust th QR code's position</h2>
                 <object
                   className="preview"
                   data={URL.createObjectURL(
@@ -99,7 +118,7 @@ const App = () => {
                   )}
                   type="application/pdf"
                   width="100%"
-                  height="100%"
+                  height="700px"
                 >
                   <p>PDF preview is not available</p>
                 </object>
@@ -114,17 +133,20 @@ const App = () => {
                     modifyPdf();
                   }}
                 />
+                {stamped && (
+                  <button
+                    className="download-btn"
+                    onClick={() => downloadFile()}
+                  >
+                    Download PDF
+                  </button>
+                )}
               </div>
             </div>
           </>
         )}
-        {!stamped ? (
-          <button onClick={() => modifyPdf()}>Preview PDF</button>
-        ) : (
-          <button onClick={() => downloadFile()}>Download PDF</button>
-        )}
       </div>
-    </>
+    </main>
   );
 };
 

@@ -68,12 +68,13 @@ const Stamper = () => {
   };
 
   return (
-    <main className="flex flex-col flex-wrap justify-center items-center md:flex-row">
-      <div className="flex flex-col justify-center items-center text-center gap-5 flex-1">
+    <main className="flex flex-col flex-wrap justify-center md:items-center md:flex-row pt-14">
+      <div className="flex flex-col justify-center items-center text-center gap-5 flex-1 ">
         <img className="w-[10rem] h-[10rem]" src="logo.png" alt="logo" />
         <h2>Fill in the information to include in the QR code</h2>
         <label htmlFor="name">Name</label>
         <input
+          className="p-[1rem] w-3/4 md:w-1/2"
           id="name"
           type="text"
           value={name}
@@ -81,6 +82,7 @@ const Stamper = () => {
         />
         <label htmlFor="content">Content</label>
         <input
+          className="p-[1rem] w-3/4 md:w-1/2"
           id="content"
           type="text"
           value={topic}
@@ -93,13 +95,13 @@ const Stamper = () => {
           accept=".pdf"
           onChange={handleFileChange}
         />
-        <p className="w-1/2 text-yellow-500">
+        <p className="w-3/4 md:w-1/2 text-yellow-500">
           Please be assured that your document remains strictly on your device,
           ensuring utmost privacy and confidentiality.
         </p>
         {!stamped && <button onClick={() => modifyPdf()}>Preview PDF</button>}
       </div>
-      <div className="flex justify-center flex-1 h-screen">
+      <div className="flex justify-center flex-1 md:h-screen">
         {stamped && (
           <>
             <div className="flex relative w-full px-10">
@@ -114,7 +116,7 @@ const Stamper = () => {
                   modifyPdf();
                 }}
               />
-              <div className="w-full ">
+              <div className="w-full h-screen">
                 {' '}
                 <h2 className="text-center pb-5">
                   Move the sliders to adjust th QR code's position

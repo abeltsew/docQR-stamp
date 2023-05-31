@@ -1,9 +1,3 @@
-#name,
-#content {
-  padding: 1rem;
-  width: 50%;
-}
-
 .vertical-slider {
   transform: rotate(270deg);
   position: absolute;

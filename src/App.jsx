@@ -1,5 +1,5 @@
 import Stamper from './components/Stamper';
-import Header from './components/header';
+import Header from './components/Header';
 
 const App = () => {
   return (
